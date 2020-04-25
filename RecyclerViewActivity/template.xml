@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="5"
+    name="List Activity"
+    minApi="9"
+    minBuildApi="14"
+    description="Creates a new list mvp activity">
+
+    <category value="Mvp" />
+    <formfactor value="Mobile" />
+
+
+    <parameter
+        id="moduleName"
+        name="Module Name"
+        type="string"
+        constraints="class|nonempty"
+        default="Main"
+        help="The name of the module to create" />
+
+
+    <parameter
+        id="activityName"
+        name="Activity Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        suggest="${moduleName}ListActivity"
+        default="MainActivity"
+        help="The name of the activity class to create" />
+
+    <parameter
+        id="withToolbar"
+        name="Generate Layout Toolbar"
+        type="boolean"
+        default="true"
+        help="If true, a layout file will contains toolbar" />
+
+    <parameter
+        id="layoutName"
+        name="Layout Name"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="${activityToLayout(activityName)}"
+        default="activity_main"
+        help="The name of the layout to create for the activity" />
+
+    <parameter
+        id="itemName"
+        name="List Item Name"
+        suggest="${moduleName}"
+        type="string"
+        constraints="class|nonempty"
+        default="Main"
+        help="The name of the list item" />
+
+
+    <parameter
+        id="beanName"
+        name="Bean Name"
+        suggest="${itemName}Bean"
+        type="string"
+        constraints="class|nonempty"
+        default="Main"
+        help="The name bean" />
+    <parameter
+        id="generateItemBean"
+        name="Generate Item Bean File"
+        type="boolean"
+        default="true"
+        help="If true, a class file will be generated" />
+    
+    <parameter
+        id="generateItemLayout"
+        name="Generate Item Layout File"
+        type="boolean"
+        default="true"
+        help="If true, an item layout file will be generated" />
+
+    <parameter
+        id="itemLayoutName"
+        name="Item Layout Name"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="item_${classToResource(itemName)}"
+        default="item_main"
+        visibility="generateItemLayout"
+        help="The name of the item layout to create for the activity" />
+
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        suggest="${applicationPackage}"
+        constraints="package"
+        default="com.mycompany.myapp" />
+
+
+    <parameter
+        id="dynamicList"
+        name="Dynamic List"
+        type="boolean"
+        default="false"
+        help="If true, the list is dynamic load" />
+    
+    <thumbs>
+        <thumb>template_blank_activity.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>
